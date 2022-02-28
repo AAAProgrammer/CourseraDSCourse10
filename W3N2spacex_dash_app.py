@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import plotly.io as pio
 
-pio.templates.default="plotly_dark"
+pio.templates.default="plotly_white"
 
 # Read the airline data into pandas dataframe
 spacex_df = pd.read_csv("data/spacex_launch_dash.csv")
@@ -19,8 +19,8 @@ app = dash.Dash(__name__)
 
 # Create an app layout
 app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
-                                        style={'textAlign': 'center', 'color': 'white',
-                                               'font-size': 40, 'backgroundColor': 'black'},
+                                        style={'textAlign': 'center', 'color': 'black',
+                                               'font-size': 40, 'backgroundColor': 'white'},
                                         ),
                                 # TASK 1: Add a dropdown list to enable Launch Site selection
                                 # The default select value is for ALL sites
@@ -43,9 +43,9 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                 # TASK 3: Add a slider to select payload range
                                 # dcc.RangeSlider(id='payload-slider',...)
                                 dcc.RangeSlider(id='payload_slider',
-                                                min=0, max=10000, step=1000,
-                                                marks={i: '{}'.format(str(i) + " kg") for i in (range(0, 11000, 1000))},
-                                                value=[min_payload, max_payload]),
+                                                min=0, max=round(max_payload+500,-3), step=1000,
+                                                marks={i: '{}'.format(str(i) + " kg") for i in (range(0, int(max_payload)+1000, 1000))},
+                                                value=[min_payload, max_payload+1]),
                                 # TASK 4: Add a scatter chart to show the correlation between payload and launch success
                                 html.Div(dcc.Graph(id='success-payload-scatter-chart')),
                                 ])
