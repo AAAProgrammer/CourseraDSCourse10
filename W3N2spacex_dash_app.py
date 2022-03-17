@@ -61,12 +61,12 @@ def get_pie_chart(entered_site):
     if entered_site == 'ALL':
         fig = px.pie(spacex_df,
                      names='Launch Site',
-                     title='All Launch Sites',
+                     title='All Launch Sites - Successful Launches (% of Total)',
                      hole=0.3)
     else:
         fig = px.pie(filtered_df,
                      names='class',
-                     title='Launch site: '+entered_site,
+                     title='Fraction of Successful Launches on Launch Site: '+ entered_site,
                      hole=0.3)
     return fig
 
