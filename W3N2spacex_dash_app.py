@@ -66,8 +66,11 @@ def get_pie_chart(entered_site):
     else:
         fig = px.pie(filtered_df,
                      names='class',
-                     title='Fraction of Successful Launches on Launch Site: '+ entered_site,
-                     hole=0.3)
+                     color='class',
+                     title='Successful Launches at: '+entered_site,
+                     hole=0.3,
+                     color_discrete_map={0:'red', 1:'green'}
+                     )
     return fig
 
 
